@@ -1,6 +1,4 @@
-import Navbar from "./components/Navbar/Navbar"
-
-
+import Home from "./pages/Home"
 
 
 function App() {
@@ -8,7 +6,9 @@ function App() {
   return (
     <>
   
-      <Navbar></Navbar>
+      <Home>
+        
+      </Home>
    
     </>
   )
