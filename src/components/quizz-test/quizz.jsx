@@ -1,19 +1,13 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 
 
 const Quizz = () => {
     return (
-        <div>
-            
-        </div>
+       <h1>
+        hello guys
+       </h1>
     );
 };
 
-
-Quizz.propTypes = {
-
-};
 
 
 export default Quizz;
