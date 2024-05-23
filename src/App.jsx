@@ -1,4 +1,5 @@
 import Home from "./pages/Home"
+import Score from "./pages/Score"
 
 
 function App() {
@@ -6,9 +7,7 @@ function App() {
   return (
     <>
   
-      <Home>
-        
-      </Home>
+      <Home></Home>
    
     </>
   )
