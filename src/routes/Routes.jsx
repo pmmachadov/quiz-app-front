@@ -6,6 +6,7 @@ import Contact from '../pages/Contact';
 import FAQ from '../pages/FAQ';
 import Score from '../pages/Score';
 import Terms from '../pages/Terms';
+import TeacherDashboard from './components/Dashboard/TeacherDashboard/TeacherDashboard';
 
 function RoutesWeb() {
   return (
@@ -18,6 +19,7 @@ function RoutesWeb() {
           <Route path="/faq" element={<FAQ />} />
           <Route path="/score" element={<Score />} />
           <Route path="/terms" element={<Terms />} />
+          <Route path="/teacher-dashboard" element={ <TeacherDashboard /> } />
         </Routes>
       </>
     
