@@ -22,15 +22,19 @@ const topPlayersData = [
 
 const DashStats = () => {
   return (
-    <div className="flex flex-col items-center min-h-screen bg-gray-300 p-4">
-      <div className="flex justify-between w-full mb-4">
+    <div className="flex flex items-start justify-center  bg-gray-300 p-4">
+      
         <Stats players={playersData} />
-        <TopThree topPlayers={topPlayersData} />
-      </div>
-      <div className="flex space-x-4 mt-4">
+
+
+        <div>
+        <TopThree topPlayers />
+      
+        <div className='flex ml-10 gap-6'>
         <button className="bg-gray-700 text-white py-2 px-4 rounded">Download Stats</button>
         <button className="bg-gray-700 text-white py-2 px-4 rounded">Exit</button>
-      </div>
+        </div>
+        </div>
     </div>
   );
 };
