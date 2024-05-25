@@ -6,7 +6,7 @@ import Contact from '../pages/Contact';
 import FAQ from '../pages/FAQ';
 import Score from '../pages/Score';
 import Terms from '../pages/Terms';
-import TeacherDashboard from './components/Dashboard/TeacherDashboard/TeacherDashboard';
+import TeacherDashboard from '../components/Dashboard/TeacherDashboard/TeacherDashboard';
 
 function RoutesWeb() {
   return (
