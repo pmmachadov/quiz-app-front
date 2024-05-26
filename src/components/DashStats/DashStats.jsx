@@ -22,7 +22,7 @@ const topPlayersData = [
 
 const DashStats = () => {
   return (
-    <div className="flex flex items-start justify-center  bg-gray-300 p-4">
+    <div className="flex items-start justify-center  bg-gray-300 p-4">
       
         <Stats players={playersData} />
 
