@@ -1,16 +1,14 @@
-import { BrowserRouter as Router } from "react-router-dom";
-import RoutesWeb from "./routes/Routes";
-
-
-
+import { BrowserRouter as Router } from 'react-router-dom';
+import RoutesWeb from './routes/Routes';
+import { GameProvider } from './context/GameContext';
 
 function App() {
- 
-
   return (
-    <Router>
-          <RoutesWeb />
-    </Router>
+    <GameProvider>
+      <Router>
+        <RoutesWeb />
+      </Router>
+    </GameProvider>
   );
 }
 
