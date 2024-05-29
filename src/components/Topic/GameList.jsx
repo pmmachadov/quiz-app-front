@@ -1,24 +1,28 @@
 import React, { useContext } from 'react';
-import { GameContext } from '../context/GameContext';
-import { useNavigate } from 'react-router-dom';
+import { GameContext } from '../../context/GameContext';
 
 const GameList = () => {
-    const { games, setSelectedGame, fetchQuestions } = useContext(GameContext);
-    const navigate = useNavigate();
+    const { games, setSelectedGame } = useContext(GameContext);
 
-    const handleGameClick = (game) => {
-        setSelectedGame(game);
-        fetchQuestions(game.id);
-        navigate('/questions');
-    };
+    if (games.length === 0) {
+        return <div className="text-center text-xl">No games available</div>;
+    }
 
     return (
-        <div>
-            <h2>Choose a Game</h2>
-            <ul>
-                { games.map(game => (
-                    <li key={ game.id } onClick={ () => handleGameClick(game) }>
-                        { game.name }
+        <div className="p-6 text-2xl font-bold mb-4">
+            <h2 className="text-2xl font-bold mb-4">Choose a Game</h2>
+            <ul className="list-none">
+                { games.map((game) => (
+                    <li key={ game.id } className="mb-2">
+                        <button
+                            className="bg-blue-500 text-white px-4 py-2 rounded"
+                            onClick={ () => {
+                                console.log(`Game selected: ${game.name}`);
+                                setSelectedGame(game);
+                            } }
+                        >
+                            { game.name }
+                        </button>
                     </li>
                 )) }
             </ul>

@@ -1,8 +1,11 @@
 import React, { useContext } from 'react';
-import { GameContext } from '../context/GameContext';
+import { GameContext } from '../../context/GameContext';
 
 const QuestionList = () => {
     const { questions, selectedGame } = useContext(GameContext);
+
+    console.log('Selected game:', selectedGame);
+    console.log('Questions:', questions);
 
     if (!selectedGame) return <div>Please select a game first</div>;
 

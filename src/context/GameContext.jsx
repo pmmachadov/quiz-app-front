@@ -6,11 +6,14 @@ export const GameContext = createContext();
 export const GameProvider = ({ children }) => {
     const [games, setGames] = useState([]);
     const [selectedGame, setSelectedGame] = useState(null);
+    const [questions, setQuestions] = useState([]);
 
     useEffect(() => {
         const fetchGames = async () => {
+            console.log('Fetching games...');
             try {
                 const response = await axios.get('http://localhost:3000/api/topics');
+                console.log('Games fetched:', response.data);
                 setGames(response.data);
             } catch (error) {
                 console.error('Error fetching games:', error);
@@ -20,8 +23,25 @@ export const GameProvider = ({ children }) => {
         fetchGames();
     }, []);
 
+    useEffect(() => {
+        if (selectedGame) {
+            const fetchQuestions = async () => {
+                console.log(`Fetching questions for game ID: ${selectedGame.id}`);
+                try {
+                    const response = await axios.get(`http://localhost:3000/api/topics/${selectedGame.id}/questions`);
+                    console.log('Questions fetched:', response.data);
+                    setQuestions(response.data);
+                } catch (error) {
+                    console.error('Error fetching questions:', error);
+                }
+            };
+
+            fetchQuestions();
+        }
+    }, [selectedGame]);
+
     return (
-        <GameContext.Provider value={ { games, selectedGame, setSelectedGame } }>
+        <GameContext.Provider value={ { games, selectedGame, setSelectedGame, questions } }>
             { children }
         </GameContext.Provider>
     );
