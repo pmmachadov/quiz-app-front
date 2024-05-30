@@ -30,16 +30,16 @@ const GameList = () => {
                 <h2 className="text-3xl font-bold mb-6 text-center">Choose a Topic</h2>
             </div>
             <div className="flex justify-end">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4" style={ { width: '50%' } }>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mr-16" style={ { width: '50%' } }>
                     { games.map((game, index) => (
                         <div
                             key={ game.id }
                             className="relative bg-gray-200 rounded-lg shadow-md cursor-pointer transform transition duration-200 hover:scale-105"
                             style={ {
                                 marginTop: index % 2 === 0 ? '0' : '40px',
-                                width: '100%',
+                                width: '60%',
                                 height: '0',
-                                paddingBottom: '100%',
+                                paddingBottom: '60%',
                             } }
                             onClick={ () => {
                                 console.log(`Game selected: ${game.name}`);
