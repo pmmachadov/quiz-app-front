@@ -9,10 +9,10 @@ const NavbarLink = ({ to, children }) => (
   </li>
 );
 
-const NavbarButton = ({ text, bgClass }) => (
-  <button className={`px-4 py-2 font-bold ${bgClass} rounded-md hover:bg-gray-100 border border-gray-300`}>
+const NavbarButtonLink = ({ to, text, bgClass }) => (
+  <Link to={to} className={`px-4 py-2 font-bold ${bgClass} rounded-md hover:bg-gray-100 border border-gray-300`}>
     {text}
-  </button>
+  </Link>
 );
 
 const Navbar = () => {
@@ -28,8 +28,8 @@ const Navbar = () => {
           <NavbarLink to="/contacts">Contacts</NavbarLink>
         </ul>
         <div className="flex items-center space-x-2">
-          <NavbarButton text="Log in" bgClass="bg-gray-200 hover:bg-gray-100" />
-          <NavbarButton text="Sign up" bgClass="bg-zinc-500 text-white hover:bg-gray-700" />
+          <NavbarButtonLink to="/login" text="Log in" bgClass="bg-gray-200 hover:bg-gray-100" />
+          <NavbarButtonLink to="/register" text="Sign up" bgClass="bg-zinc-500 text-white hover:bg-gray-700" />
           <GlobeIcon />
         </div>
       </div>
