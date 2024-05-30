@@ -1,17 +1,14 @@
-import React from 'react';
-import { GameProvider } from './context/GameContext';
-import GameList from './components/Topic/GameList';
-import QuestionList from './components/Topic/QuestionList';
+import { BrowserRouter as Router } from 'react-router-dom';
+import RoutesWeb from './routes/Routes';
 
-const App = () => {
+
+
+function App() {
   return (
-    <GameProvider>
-      <div className="App">
-        <GameList />
-        <QuestionList />
-      </div>
-    </GameProvider>
-  );
-};
+    <Router>
+      <RoutesWeb />
+    </Router>
+  )
+}
 
 export default App;
