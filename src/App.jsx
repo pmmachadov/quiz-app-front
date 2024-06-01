@@ -1,20 +1,16 @@
-import { BrowserRouter as Router } from "react-router-dom";
-import RoutesWeb from "./routes/Routes";
-import Navbar from "./components/Navbar/Navbar";
-import Footer from "./components/Footer/Footer";
+import { BrowserRouter as Router } from 'react-router-dom';
+import RoutesWeb from './routes/Routes';
+import { AuthProvider } from './services/authContext';
+
 
 function App() {
   return (
+    <AuthProvider>
     <Router>
-      <div className="flex flex-col min-h-screen">
-        <Navbar></Navbar>
-        <main className="flex-grow">
-          <RoutesWeb></RoutesWeb>
-        </main>
-        <Footer></Footer>
-      </div>
+      <RoutesWeb />
     </Router>
-  );
+    </AuthProvider>
+  )
 }
 
 export default App;

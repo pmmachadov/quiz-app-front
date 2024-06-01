@@ -1,26 +1,45 @@
 import React from 'react';
-import {  Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import Home from '../pages/Home';
 import About from '../pages/About';
 import Contact from '../pages/Contact';
 import FAQ from '../pages/FAQ';
 import Score from '../pages/Score';
 import Terms from '../pages/Terms';
+import LoginPage from '../pages/LoginPage';
+import RegisterPage from '../pages/RegisterPage';
+import ConfirmEmail from '../components/ConfirmEmail/ConfirmEmail';
+import TeacherDashboard from '../components/Dashboard/TeacherDashboard/TeacherDashboard';
+import Layout from "../components/Layout/Layout";
+import Questions from '../pages/Questions';
+import PrivateRoute from './PrivateRoute';
+import PublicRoute from './PublicRoute';
 
 function RoutesWeb() {
   return (
-    
-      <>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/faq" element={<FAQ />} />
-          <Route path="/score" element={<Score />} />
-          <Route path="/terms" element={<Terms />} />
-        </Routes>
-      </>
-    
+    <Routes>
+      <Route path="/" element={ <Layout><Home /></Layout> } />
+      <Route path="/about" element={ <Layout><About /></Layout> } />
+      <Route path="/contact" element={ <Layout><Contact /></Layout> } />
+      <Route path="/faq" element={ <Layout><FAQ /></Layout> } />
+      <Route path="/score" element={ <Layout><Score /></Layout> } />
+      <Route path="/terms" element={ <Layout><Terms /></Layout> } />
+      <Route path="/teacher-dashboard" element={ <Layout><TeacherDashboard /></Layout> } />
+      <Route path="/confirm/:token" element={ <ConfirmEmail /> } />
+      
+      <Route path="/register" element={<PublicRoute />}>
+        <Route path="" element={ <Layout><RegisterPage /></Layout> } />
+      </Route>
+
+      <Route path="/login" element={<PublicRoute />}>
+        <Route path="" element={ <Layout><LoginPage /></Layout> } />
+      </Route>
+      
+      
+      <Route element={<PrivateRoute />}>
+        <Route path="/questions" element={<Layout><Questions /></Layout>} />
+      </Route>
+    </Routes>
   );
 }
 
