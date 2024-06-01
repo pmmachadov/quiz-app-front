@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { TextField, Button, Typography, Container, Box, Alert } from '@mui/material';
+import { TextField, Button, Typography, Container, Box, Alert, Checkbox, FormControlLabel } from '@mui/material';
 import { register } from '../../services/authService';
 
 const validationSchema = Yup.object({
@@ -12,10 +12,12 @@ const validationSchema = Yup.object({
   confirmPassword: Yup.string()
     .oneOf([Yup.ref('password'), null], 'Passwords must match')
     .required('Confirm Password is required'),
+  terms: Yup.bool().oneOf([true], 'You must accept the terms and conditions'),
 });
 
 const Register = () => {
   const [confirmationMessage, setConfirmationMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
   const formik = useFormik({
     initialValues: {
@@ -24,6 +26,7 @@ const Register = () => {
       email: '',
       password: '',
       confirmPassword: '',
+      terms: false,
     },
     validationSchema: validationSchema,
     onSubmit: async (values, { setSubmitting, setErrors }) => {
@@ -31,9 +34,19 @@ const Register = () => {
         const response = await register(values.firstName, values.lastName, values.email, values.password);
         console.log(response);
         setConfirmationMessage('Confirm Your Email!');
+        setErrorMessage('');
       } catch (error) {
         console.error(error);
-        setErrors({ submit: 'Registration failed. Please try again.' });
+        if (error.response && error.response.data.message) {
+          setErrorMessage(error.response.data.message);
+          if (error.response.data.message === 'This email is already registered') {
+            setErrors({ email: 'This email is already registered' });
+          } else {
+            setErrors({ submit: 'Registration failed. Please try again.' });
+          }
+        } else {
+          setErrors({ submit: 'Registration failed. Please try again.' });
+        }
       } finally {
         setSubmitting(false);
       }
@@ -44,10 +57,10 @@ const Register = () => {
     <Container maxWidth="sm">
       <Box sx={{ mt: 5 }} className="bg-white p-6 rounded shadow-md">
         <Typography variant="h4" gutterBottom className="font-bold">
-          Provide your Personal Details
+          Welcome to BrainRush!
         </Typography>
         <Typography variant="subtitle1" gutterBottom className="text-gray-600">
-          So we can set up everything for you
+          Create your free account
         </Typography>
         <form onSubmit={formik.handleSubmit} className="space-y-4">
           <TextField
@@ -104,7 +117,7 @@ const Register = () => {
             margin="normal"
             id="confirmPassword"
             name="confirmPassword"
-            label="Repeat Password"
+            label="Confirm Password"
             type="password"
             value={formik.values.confirmPassword}
             onChange={formik.handleChange}
@@ -112,18 +125,43 @@ const Register = () => {
             helperText={formik.touched.confirmPassword && formik.errors.confirmPassword}
             className="border-gray-300 rounded"
           />
+          <FormControlLabel
+            control={
+              <Checkbox
+                id="terms"
+                name="terms"
+                color="primary"
+                checked={formik.values.terms}
+                onChange={formik.handleChange}
+              />
+            }
+            label={
+              <Typography variant="body2">
+                I have read and agree to the <a href="/terms-and-conditions" className="text-blue-600">Terms and Conditions</a>
+              </Typography>
+            }
+          />
+          {formik.touched.terms && Boolean(formik.errors.terms) && (
+            <Typography color="error" variant="body2">
+              {formik.errors.terms}
+            </Typography>
+          )}
           {formik.errors.submit && (
             <Typography color="error" variant="body2">
               {formik.errors.submit}
             </Typography>
           )}
+          {errorMessage && (
+            <Alert severity="error">{errorMessage}</Alert>
+          )}
           <Button
+            sx={{ bgcolor: 'bg-zinc-500', '&:hover': { bgcolor: 'bg-zinc-700' } }}
             color="primary"
             variant="contained"
             fullWidth
             type="submit"
-            disabled={formik.isSubmitting}
-            className="bg-blue-500 hover:bg-blue-600 text-white py-2 rounded"
+            disabled={formik.isSubmitting || !formik.values.terms}
+            className="text-white py-2 rounded"
           >
             Continue
           </Button>

@@ -1,5 +1,6 @@
 import React from 'react';
 import OctahedronComponent from '../Octahedron/Octahedron';
+import { Link } from 'react-router-dom';
 
 const Hero = () => {
   return (
@@ -27,7 +28,9 @@ const HeroDescription = () => (
 );
 
 const HeroButton = () => (
-  <button className="px-4 py-2 bg-zinc-500 text-white rounded-md">I am a Teacher!</button>
+  <Link to="/questions" className="px-4 py-2 bg-zinc-500 text-white rounded-md">
+            I am a Teacher!
+  </Link>
 );
 
 export default Hero;
