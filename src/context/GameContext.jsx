@@ -6,7 +6,7 @@ export const GameContext = createContext();
 export const GameProvider = ({ children }) => {
     const [games, setGames] = useState([]);
     const [selectedGame, setSelectedGame] = useState(null);
-    const [questions, setQuestions] = useState([]);
+    const [questions, setQuestions] = useState([]);  // <-- Añadido
 
     useEffect(() => {
         const fetchGames = async () => {
@@ -40,9 +40,9 @@ export const GameProvider = ({ children }) => {
         }
     }, [selectedGame]);
 
-    return (
-        <GameContext.Provider value={ { games, selectedGame, setSelectedGame, questions } }>
+    return useMemo(() => (
+        <GameContext.Provider value={ { games, selectedGame, setSelectedGame, questions, setQuestions } }>
             { children }
         </GameContext.Provider>
-    );
+    ), [games, selectedGame, questions]);
 };
