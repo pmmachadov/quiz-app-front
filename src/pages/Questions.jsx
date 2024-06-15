@@ -14,5 +14,6 @@ const Questions = () => {
         </GameProvider>
     );
 };
+// trying to solve a trouble
 
 export default Questions;
