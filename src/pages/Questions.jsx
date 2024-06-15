@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext } from 'react';
 import { GameProvider, GameContext } from '../context/GameContext';
 import GameList from '../components/Topic/GameList';
 import QuestionList from '../components/Topic/QuestionList';
+import { Link } from 'react-router-dom';
 
 const Questions = () => {
     const { setQuestions } = useContext(GameContext);  // <-- Añadido
