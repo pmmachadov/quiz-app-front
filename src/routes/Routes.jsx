@@ -19,26 +19,26 @@ import WaitingRoom from '../pages/WaitingRoom';
 function RoutesWeb() {
   return (
     <Routes>
-      <Route path="/" element={<Layout><Home /></Layout>} />
-      <Route path="/about" element={<Layout><About /></Layout>} />
-      <Route path="/contact" element={<Layout><Contact /></Layout>} />
-      <Route path="/faq" element={<Layout><FAQ /></Layout>} />
-      <Route path="/score" element={<Layout><Score /></Layout>} />
-      <Route path="/terms" element={<Layout><Terms /></Layout>} />
-      <Route path="/teacher-dashboard" element={<Layout><TeacherDashboard /></Layout>} />
-      <Route path="/confirm/:token" element={<ConfirmEmail />} />
+      <Route path="/" element={ <Layout><Home /></Layout> } />
+      <Route path="/about" element={ <Layout><About /></Layout> } />
+      <Route path="/contact" element={ <Layout><Contact /></Layout> } />
+      <Route path="/faq" element={ <Layout><FAQ /></Layout> } />
+      <Route path="/score" element={ <Layout><Score /></Layout> } />
+      <Route path="/terms" element={ <Layout><Terms /></Layout> } />
+      <Route path="/teacher-dashboard" element={ <Layout><TeacherDashboard /></Layout> } />
+      <Route path="/confirm/:token" element={ <ConfirmEmail /> } />
 
-      <Route path="/register" element={<PublicRoute />}>
-        <Route path="" element={<Layout><RegisterPage /></Layout>} />
+      <Route path="/register" element={ <PublicRoute /> }>
+        <Route path="" element={ <Layout><RegisterPage /></Layout> } />
       </Route>
 
-      <Route path="/login" element={<PublicRoute />}>
-        <Route path="" element={<Layout><LoginPage /></Layout>} />
+      <Route path="/login" element={ <PublicRoute /> }>
+        <Route path="" element={ <Layout><LoginPage /></Layout> } />
       </Route>
 
-      <Route element={<PrivateRoute />}>
-        <Route path="/questions" element={<Layout><Questions /></Layout>} />
-        <Route path="/waitingroom" element={<Layout><WaitingRoom/></Layout>} />
+      <Route element={ <PrivateRoute /> }>
+        <Route path="/questions" element={ <Layout><Questions /></Layout> } />
+        <Route path="/waitingroom" element={ <Layout><WaitingRoom /></Layout> } />
       </Route>
     </Routes>
   );

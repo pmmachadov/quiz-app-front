@@ -7,11 +7,11 @@ const PrivateRoute = () => {
 
   console.log('Auth state in PrivateRoute:', authState);
 
-  return authState.isAuthenticated && authState.isConfirmed ? (
-    <Outlet />
-  ) : (
-    <Navigate to="/login" />
-  );
+  if (!authState.isAuthenticated) {
+    return <Navigate to="/login" />;
+  }
+
+  return <Outlet />;
 };
 
 export default PrivateRoute;
