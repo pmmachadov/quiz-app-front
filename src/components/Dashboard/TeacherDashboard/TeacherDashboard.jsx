@@ -9,39 +9,39 @@ const TeacherDashboard = () => {
 
     useEffect(() => {
         fetch('http://localhost:3000/api/topic-questions')
-            .then((response) => {
+            .then(response => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok ' + response.statusText);
                 }
                 return response.json();
             })
-            .then((data) => {
+            .then(data => {
                 console.log('Fetched data:', data);
                 setQuestionsData(data.questions);
                 setLoading(false);
             })
-            .catch((error) => {
+            .catch(error => {
                 console.error('Error fetching data:', error);
                 setError(error);
                 setLoading(false);
             });
     }, []);
 
-    const fetchQuestionById = (id) => {
+    const fetchQuestionById = id => {
         setLoading(true);
         fetch(`http://localhost:3000/api/topic-questions/${id}`)
-            .then((response) => {
+            .then(response => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok ' + response.statusText);
                 }
                 return response.json();
             })
-            .then((question) => {
+            .then(question => {
                 console.log('Fetched question:', question);
                 setSelectedQuestion(question);
                 setLoading(false);
             })
-            .catch((error) => {
+            .catch(error => {
                 console.error('Error fetching question:', error);
                 setError(error);
                 setLoading(false);
@@ -56,14 +56,13 @@ const TeacherDashboard = () => {
             { questionsData ? (
                 <div>
                     <QAList questions={ questionsData } />
-
                     { selectedQuestion && (
                         <div className="mt-4 p-4 border border-gray-300 rounded-lg shadow-lg bg-white bg-opacity-70 backdrop-blur-lg">
                             <h2 className="text-xl font-semibold">Selected Question:</h2>
                             <p className="text-lg">{ selectedQuestion.question }</p>
                             <ul className="list-disc ml-5 mt-2">
                                 { selectedQuestion.options.map((option, idx) => (
-                                    <li key={ idx } className={ `${option === selectedQuestion.correctAnswer ? 'font-bold text-green-600' : ''}` }>
+                                    <li key={ id } className={ `${option === selectedQuestion.correctAnswer ? 'font-bold text-green-600' : ''}` }>
                                         { option }
                                     </li>
                                 )) }

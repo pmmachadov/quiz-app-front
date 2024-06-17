@@ -1,7 +1,7 @@
+// src/contexts/AuthContext.jsx
 import React, { createContext, useState, useEffect } from 'react';
-import { login as loginService, logout as logoutService } from './authService';
+import { login as loginService, logout as logoutService } from '../services/authService';
 import PropTypes from 'prop-types';
-
 
 export const AuthContext = createContext();
 
@@ -62,7 +62,6 @@ export const AuthProvider = ({ children }) => {
   );
 };
 
-
-AuthContext.propTypes = {
+AuthProvider.propTypes = {
   children: PropTypes.node.isRequired,
 };

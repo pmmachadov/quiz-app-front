@@ -10,7 +10,7 @@ import LoginPage from '../pages/LoginPage';
 import RegisterPage from '../pages/RegisterPage';
 import ConfirmEmail from '../components/ConfirmEmail/ConfirmEmail';
 import TeacherDashboard from '../components/Dashboard/TeacherDashboard/TeacherDashboard';
-import Layout from "../components/Layout/Layout";
+import Layout from '../components/Layout/Layout';
 import Questions from '../pages/Questions';
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
