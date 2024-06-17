@@ -2,23 +2,23 @@ import React, { useContext } from 'react';
 import { GameContext } from '../../context/GameContext';
 import { FaGamepad, FaJs, FaReact, FaDatabase, FaNodeJs } from 'react-icons/fa';
 
+const getIcon = (name) => {
+    switch (name.toLowerCase()) {
+        case 'javascript':
+            return <FaJs className="w-24 h-24 text-yellow-500 mb-4" />;
+        case 'react.js':
+            return <FaReact className="w-24 h-24 text-blue-400 mb-4" />;
+        case 'node.js':
+            return <FaNodeJs className="w-24 h-24 text-green-500 mb-4" />;
+        case 'sql':
+            return <FaDatabase className="w-24 h-24 text-gray-500 mb-4" />;
+        default:
+            return <FaGamepad className="w-24 h-24 text-gray-400 mb-4" />;
+    }
+};
+
 const GameList = () => {
     const { games, setSelectedGame } = useContext(GameContext);
-
-    const getIcon = (name) => {
-        switch (name.toLowerCase()) {
-            case 'javascript':
-                return <FaJs className="w-24 h-24 text-yellow-500 mb-4" />;
-            case 'react.js':
-                return <FaReact className="w-24 h-24 text-blue-400 mb-4" />;
-            case 'node.js':
-                return <FaNodeJs className="w-24 h-24 text-green-500 mb-4" />;
-            case 'sql':
-                return <FaDatabase className="w-24 h-24 text-gray-500 mb-4" />;
-            default:
-                return <FaGamepad className="w-24 h-24 text-gray-400 mb-4" />;
-        }
-    };
 
     if (games.length === 0) {
         return <div className="text-center text-xl">No games available</div>;
@@ -42,7 +42,6 @@ const GameList = () => {
                                 paddingBottom: '60%',
                             } }
                             onClick={ () => {
-                                console.log(`Game selected: ${game.name}`);
                                 setSelectedGame(game);
                             } }
                         >

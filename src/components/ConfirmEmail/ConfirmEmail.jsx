@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Container, Box, Typography, Alert } from '@mui/material';
 import axios from 'axios';
@@ -25,12 +25,12 @@ const ConfirmEmail = () => {
 
   return (
     <Container maxWidth="sm">
-      <Box sx={{ mt: 5, textAlign: 'center' }} className="bg-white p-6 rounded shadow-md">
+      <Box sx={ { mt: 5, textAlign: 'center' } } className="bg-white p-6 rounded shadow-md">
         <Typography variant="h4" gutterBottom>
           Quiz App
         </Typography>
-        <Alert severity={severity} sx={{ mt: 3 }}>
-          {message}
+        <Alert severity={ severity } sx={ { mt: 3 } }>
+          { message }
         </Alert>
       </Box>
     </Container>
