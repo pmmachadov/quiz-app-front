@@ -1,4 +1,3 @@
-// src/contexts/AuthContext.jsx
 import React, { createContext, useState, useEffect } from 'react';
 import { login as loginService, logout as logoutService } from '../services/authService';
 import PropTypes from 'prop-types';
@@ -23,7 +22,7 @@ export const AuthProvider = ({ children }) => {
     }
   }, []);
 
-  const login = async (email, password) => {
+  export const login = async (email, password) => {
     try {
       const response = await loginService(email, password);
       localStorage.setItem('user', JSON.stringify({

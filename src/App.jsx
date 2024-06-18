@@ -1,15 +1,18 @@
 import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import RoutesWeb from './routes/Routes';
-import { AuthProvider } from './services/authContext';
+import { TeacherAuthProvider } from '../src/context/GameContext';
+import { StudentAuthProvider } from '../src/context/StudentAuthContext';
 
 function App() {
   return (
-    <AuthProvider>
-      <Router>
-        <RoutesWeb />
-      </Router>
-    </AuthProvider>
+    <TeacherAuthProvider>
+      <StudentAuthProvider>
+        <Router>
+          <RoutesWeb />
+        </Router>
+      </StudentAuthProvider>
+    </TeacherAuthProvider>
   );
 }
 
