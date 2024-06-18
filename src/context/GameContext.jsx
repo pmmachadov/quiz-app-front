@@ -1,5 +1,5 @@
 import React, { createContext, useState, useEffect } from 'react';
-import axios from 'axios';
+import socket from '../socket';
 
 export const GameContext = createContext();
 
@@ -9,30 +9,28 @@ export const GameProvider = ({ children }) => {
     const [questions, setQuestions] = useState([]);
 
     useEffect(() => {
-        const fetchGames = async () => {
-            try {
-                const response = await axios.get('http://localhost:3000/api/topics');
-                setGames(response.data);
-            } catch (error) {
-                console.error('Error fetching games:', error);
-            }
-        };
+        socket.on('topics', (data) => {
+            setGames(data);
+        });
 
-        fetchGames();
+        socket.emit('getTopics');
+
+        return () => {
+            socket.off('topics');
+        };
     }, []);
 
     useEffect(() => {
         if (selectedGame) {
-            const fetchQuestions = async () => {
-                try {
-                    const response = await axios.get(`http://localhost:3000/api/topics/${selectedGame.id}/questions`);
-                    setQuestions(response.data);
-                } catch (error) {
-                    console.error('Error fetching questions:', error);
-                }
-            };
+            socket.emit('getQuestionsByTopic', selectedGame.id);
 
-            fetchQuestions();
+            socket.on('questions', (data) => {
+                setQuestions(data);
+            });
+
+            return () => {
+                socket.off('questions');
+            };
         }
     }, [selectedGame]);
 

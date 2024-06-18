@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { Container, Box, Typography, Alert } from '@mui/material';
 import axios from 'axios';
 
+
 const ConfirmEmail = () => {
   const { token } = useParams();
   const [message, setMessage] = useState('');
@@ -11,7 +12,7 @@ const ConfirmEmail = () => {
   useEffect(() => {
     const confirmEmail = async () => {
       try {
-        const response = await axios.get(`${import.meta.env.VITE_API_URL}/user/confirm/${token}`);
+        await axios.get(`${import.meta.env.VITE_API_URL}/user/confirm/${token}`);
         setMessage('Your registration has been successfully completed!');
         setSeverity('success');
       } catch (error) {
