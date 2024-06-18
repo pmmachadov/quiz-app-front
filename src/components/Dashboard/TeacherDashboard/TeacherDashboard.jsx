@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import QAList from './QAList';
+import socket from '../../../socket';
 
 const TeacherDashboard = () => {
     const [questionsData, setQuestionsData] = useState(null);
@@ -8,51 +9,49 @@ const TeacherDashboard = () => {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        fetch('http://localhost:3000/api/topic-questions')
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok ' + response.statusText);
-                }
-                return response.json();
-            })
-            .then(data => {
-                console.log('Fetched data:', data);
-                setQuestionsData(data.questions);
-                setLoading(false);
-            })
-            .catch(error => {
-                console.error('Error fetching data:', error);
-                setError(error);
-                setLoading(false);
-            });
+        socket.emit('getTopics');
+
+        socket.on('topics', (data) => {
+            setQuestionsData(data);
+            setLoading(false);
+        });
+
+        socket.on('error', (errorMessage) => {
+            setError(errorMessage);
+            setLoading(false);
+        });
+
+        return () => {
+            socket.off('topics');
+            socket.off('error');
+        };
     }, []);
 
     const fetchQuestionById = id => {
         setLoading(true);
-        fetch(`http://localhost:3000/api/topic-questions/${id}`)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok ' + response.statusText);
-                }
-                return response.json();
-            })
-            .then(question => {
-                console.log('Fetched question:', question);
-                setSelectedQuestion(question);
-                setLoading(false);
-            })
-            .catch(error => {
-                console.error('Error fetching question:', error);
-                setError(error);
-                setLoading(false);
-            });
+        socket.emit('getQuestionsByTopic', id);
+
+        socket.on('questions', (question) => {
+            setSelectedQuestion(question);
+            setLoading(false);
+        });
+
+        socket.on('error', (errorMessage) => {
+            setError(errorMessage);
+            setLoading(false);
+        });
+
+        return () => {
+            socket.off('questions');
+            socket.off('error');
+        };
     };
 
     return (
         <div className="container mx-auto px-2 py-4">
             <h1 className="text-2xl font-bold mb-4">Questions by Topic</h1>
             { loading && <p>Loading...</p> }
-            { error && <p className="text-red-600">{ error.message }</p> }
+            { error && <p className="text-red-600">{ error }</p> }
             { questionsData ? (
                 <div>
                     <QAList questions={ questionsData } />
@@ -62,7 +61,7 @@ const TeacherDashboard = () => {
                             <p className="text-lg">{ selectedQuestion.question }</p>
                             <ul className="list-disc ml-5 mt-2">
                                 { selectedQuestion.options.map((option, idx) => (
-                                    <li key={ id } className={ `${option === selectedQuestion.correctAnswer ? 'font-bold text-green-600' : ''}` }>
+                                    <li key={ idx } className={ `${option === selectedQuestion.correctAnswer ? 'font-bold text-green-600' : ''}` }>
                                         { option }
                                     </li>
                                 )) }
