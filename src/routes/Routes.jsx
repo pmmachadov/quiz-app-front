@@ -15,7 +15,8 @@ import Questions from '../pages/Questions';
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
 import WaitingRoom from '../pages/WaitingRoom';
-import StudentRegisterOrLoginPage from '../pages/StudentRegisterOrLoginPage'; // Importa la nueva página
+import StudentRegisterOrLoginPage from '../pages/StudentRegisterOrLoginPage';
+import StudentWaitingRoom from '../pages/StudentWaitingRoom';
 
 function RoutesWeb() {
   return (
@@ -37,12 +38,8 @@ function RoutesWeb() {
         <Route path="" element={ <Layout><LoginPage /></Layout> } />
       </Route>
 
-      <Route element={ <PrivateRoute /> }>
-        <Route path="/questions" element={ <Layout><Questions /></Layout> } />
-        <Route path="/waitingroom" element={ <Layout><WaitingRoom /></Layout> } />
-      </Route>
-
       <Route path="/student/register-or-login" element={ <Layout><StudentRegisterOrLoginPage /></Layout> } />
+      <Route path="/student/waitingroom" element={ <Layout><StudentWaitingRoom /></Layout> } />
 
       <Route element={ <PrivateRoute /> }>
         <Route path="/questions" element={ <Layout><Questions /></Layout> } />

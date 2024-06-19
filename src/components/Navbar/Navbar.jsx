@@ -1,18 +1,18 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import { AuthContext } from '../../services/authContext';  // Asegúrate de que la ruta es correcta
+import { AuthContext } from '../../context/authContext';  // Asegúrate de que la ruta es correcta
 
 const NavbarLink = ({ to, children }) => (
   <li>
-    <Link to={to} className="text-gray-500 font-medium hover:text-blue-600 hover:border-b-blue-600">
-      {children}
+    <Link to={ to } className="text-gray-500 font-medium hover:text-blue-600 hover:border-b-blue-600">
+      { children }
     </Link>
   </li>
 );
 
 const NavbarButtonLink = ({ to, text, bgClass, onClick }) => (
-  <Link to={to} className={`px-4 py-2 font-bold ${bgClass} rounded-md hover:bg-gray-100 border border-gray-300`} onClick={onClick}>
-    {text}
+  <Link to={ to } className={ `px-4 py-2 font-bold ${bgClass} rounded-md hover:bg-gray-100 border border-gray-300` } onClick={ onClick }>
+    { text }
   </Link>
 );
 
@@ -31,14 +31,14 @@ const Navbar = () => {
           <NavbarLink to="/contacts">Contacts</NavbarLink>
         </ul>
         <div className="flex items-center space-x-2">
-          {!authState.isAuthenticated ? (
+          { !authState.isAuthenticated ? (
             <>
               <NavbarButtonLink to="/login" text="Log in" bgClass="bg-zinc-100 hover:bg-zinc-300" />
               <NavbarButtonLink to="/register" text="Sign up" bgClass="bg-zinc-500 text-white hover:bg-zinc-700" />
             </>
           ) : (
-            <NavbarButtonLink to="/" text="Log out" bgClass="bg-red-500 text-white hover:bg-red-700" onClick={logout} />
-          )}
+            <NavbarButtonLink to="/" text="Log out" bgClass="bg-red-500 text-white hover:bg-red-700" onClick={ logout } />
+          ) }
           <GlobeIcon />
         </div>
       </div>

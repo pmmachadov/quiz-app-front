@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { TextField, Button, Typography, Container, Box, Alert, Checkbox, FormControlLabel } from '@mui/material';
-import { register } from '../../services/authService';
+import { registerTeacher } from '../../services/authService'; // Cambiar 'register' a 'registerTeacher'
 
 const validationSchema = Yup.object({
   firstName: Yup.string().required('First Name is required'),
@@ -31,7 +31,7 @@ const Register = () => {
     validationSchema: validationSchema,
     onSubmit: async (values, { setSubmitting, setErrors }) => {
       try {
-        const response = await register(values.firstName, values.lastName, values.email, values.password);
+        const response = await registerTeacher(values.firstName, values.lastName, values.email, values.password); // Cambiar a 'registerTeacher'
         console.log(response);
         setConfirmationMessage('Confirm Your Email!');
         setErrorMessage('');
@@ -55,24 +55,24 @@ const Register = () => {
 
   return (
     <Container maxWidth="sm">
-      <Box sx={{ mt: 5 }} className="bg-white p-6 rounded shadow-md">
+      <Box sx={ { mt: 5 } } className="bg-white p-6 rounded shadow-md">
         <Typography variant="h4" gutterBottom className="font-bold">
           Welcome to BrainRush!
         </Typography>
         <Typography variant="subtitle1" gutterBottom className="text-gray-600">
           Create your free account
         </Typography>
-        <form onSubmit={formik.handleSubmit} className="space-y-4">
+        <form onSubmit={ formik.handleSubmit } className="space-y-4">
           <TextField
             fullWidth
             margin="normal"
             id="firstName"
             name="firstName"
             label="First Name"
-            value={formik.values.firstName}
-            onChange={formik.handleChange}
-            error={formik.touched.firstName && Boolean(formik.errors.firstName)}
-            helperText={formik.touched.firstName && formik.errors.firstName}
+            value={ formik.values.firstName }
+            onChange={ formik.handleChange }
+            error={ formik.touched.firstName && Boolean(formik.errors.firstName) }
+            helperText={ formik.touched.firstName && formik.errors.firstName }
             className="border-gray-300 rounded"
           />
           <TextField
@@ -81,10 +81,10 @@ const Register = () => {
             id="lastName"
             name="lastName"
             label="Last Name"
-            value={formik.values.lastName}
-            onChange={formik.handleChange}
-            error={formik.touched.lastName && Boolean(formik.errors.lastName)}
-            helperText={formik.touched.lastName && formik.errors.lastName}
+            value={ formik.values.lastName }
+            onChange={ formik.handleChange }
+            error={ formik.touched.lastName && Boolean(formik.errors.lastName) }
+            helperText={ formik.touched.lastName && formik.errors.lastName }
             className="border-gray-300 rounded"
           />
           <TextField
@@ -93,10 +93,10 @@ const Register = () => {
             id="email"
             name="email"
             label="Email"
-            value={formik.values.email}
-            onChange={formik.handleChange}
-            error={formik.touched.email && Boolean(formik.errors.email)}
-            helperText={formik.touched.email && formik.errors.email}
+            value={ formik.values.email }
+            onChange={ formik.handleChange }
+            error={ formik.touched.email && Boolean(formik.errors.email) }
+            helperText={ formik.touched.email && formik.errors.email }
             className="border-gray-300 rounded"
           />
           <TextField
@@ -106,10 +106,10 @@ const Register = () => {
             name="password"
             label="Password"
             type="password"
-            value={formik.values.password}
-            onChange={formik.handleChange}
-            error={formik.touched.password && Boolean(formik.errors.password)}
-            helperText={formik.touched.password && formik.errors.password}
+            value={ formik.values.password }
+            onChange={ formik.handleChange }
+            error={ formik.touched.password && Boolean(formik.errors.password) }
+            helperText={ formik.touched.password && formik.errors.password }
             className="border-gray-300 rounded"
           />
           <TextField
@@ -119,10 +119,10 @@ const Register = () => {
             name="confirmPassword"
             label="Confirm Password"
             type="password"
-            value={formik.values.confirmPassword}
-            onChange={formik.handleChange}
-            error={formik.touched.confirmPassword && Boolean(formik.errors.confirmPassword)}
-            helperText={formik.touched.confirmPassword && formik.errors.confirmPassword}
+            value={ formik.values.confirmPassword }
+            onChange={ formik.handleChange }
+            error={ formik.touched.confirmPassword && Boolean(formik.errors.confirmPassword) }
+            helperText={ formik.touched.confirmPassword && formik.errors.confirmPassword }
             className="border-gray-300 rounded"
           />
           <FormControlLabel
@@ -131,8 +131,8 @@ const Register = () => {
                 id="terms"
                 name="terms"
                 color="primary"
-                checked={formik.values.terms}
-                onChange={formik.handleChange}
+                checked={ formik.values.terms }
+                onChange={ formik.handleChange }
               />
             }
             label={
@@ -141,36 +141,36 @@ const Register = () => {
               </Typography>
             }
           />
-          {formik.touched.terms && Boolean(formik.errors.terms) && (
+          { formik.touched.terms && Boolean(formik.errors.terms) && (
             <Typography color="error" variant="body2">
-              {formik.errors.terms}
+              { formik.errors.terms }
             </Typography>
-          )}
-          {formik.errors.submit && (
+          ) }
+          { formik.errors.submit && (
             <Typography color="error" variant="body2">
-              {formik.errors.submit}
+              { formik.errors.submit }
             </Typography>
-          )}
-          {errorMessage && (
-            <Alert severity="error">{errorMessage}</Alert>
-          )}
+          ) }
+          { errorMessage && (
+            <Alert severity="error">{ errorMessage }</Alert>
+          ) }
           <Button
-            sx={{ bgcolor: 'bg-zinc-500', '&:hover': { bgcolor: 'bg-zinc-700' } }}
+            sx={ { bgcolor: 'bg-zinc-500', '&:hover': { bgcolor: 'bg-zinc-700' } } }
             color="primary"
             variant="contained"
             fullWidth
             type="submit"
-            disabled={formik.isSubmitting || !formik.values.terms}
+            disabled={ formik.isSubmitting || !formik.values.terms }
             className="text-white py-2 rounded"
           >
             Continue
           </Button>
         </form>
-        {confirmationMessage && (
-          <Box mt={2}>
-            <Alert severity="success">{confirmationMessage}</Alert>
+        { confirmationMessage && (
+          <Box mt={ 2 }>
+            <Alert severity="success">{ confirmationMessage }</Alert>
           </Box>
-        )}
+        ) }
       </Box>
     </Container>
   );

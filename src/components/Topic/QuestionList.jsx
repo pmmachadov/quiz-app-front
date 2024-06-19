@@ -33,7 +33,7 @@ const QuestionList = () => {
                 <div className="flex items-center p-6 bg-gray-100 rounded-lg shadow-lg border border-gray-300" style={ { height: '140px', width: '70%' } }>
                     { getIcon(selectedGame.name) }
                     <h2 className="text-3xl font-bold text-center w-full">{ selectedGame.name } Questions</h2>
-                    <StartWaitingButton />
+                    <StartWaitingButton topicId={ selectedGame.id.toString() } />
                 </div>
             </div>
             <ul className="space-y-4 mt-6">

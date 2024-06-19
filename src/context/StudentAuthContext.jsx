@@ -62,5 +62,5 @@ export const StudentAuthProvider = ({ children }) => {
 };
 
 StudentAuthProvider.propTypes = {
-    children: PropTypes.node.isRequired,
+    children: PropTypes.node,
 };

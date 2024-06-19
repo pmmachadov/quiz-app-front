@@ -1,34 +1,34 @@
-import React, { useContext } from 'react';
-import { GameContext } from '../context/GameContext';
-import * as Icons from 'react-icons/fa'; // Importa todos los íconos de FontAwesome
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import socket from '../socket';
+import PropTypes from 'prop-types';
 
-const StudentWaitingRoom = () => {
-    const { selectedGame, questions } = useContext(GameContext);
-    const student = JSON.parse(localStorage.getItem('student'));
+const StartWaitingButton = ({ topicId }) => {
+    const navigate = useNavigate();
 
-    const IconComponent = Icons[student.icon];
+    const handleClick = () => {
+        console.log("Button clicked, emitting startGame event with topicId:", topicId);
+        socket.emit('startGame', topicId);
+
+        socket.on('gameStarted', ({ gameCode }) => {
+            console.log("Game started with code received from server:", gameCode);
+            navigate('/student/waitingroom', { state: { gameCode } });
+        });
+
+        socket.on('error', (errorMessage) => {
+            console.error(errorMessage);
+        });
+    };
 
     return (
-        <div className="container mx-auto p-4">
-            <h1 className="text-3xl font-bold mb-4">Waiting Room</h1>
-            { student && (
-                <div className="flex items-center mb-4">
-                    { IconComponent && <IconComponent size={ 50 } className="mr-2" /> }
-                    <h2 className="text-2xl">{ student.username }</h2>
-                </div>
-            ) }
-            { selectedGame && (
-                <div>
-                    <h2 className="text-2xl font-semibold mb-2">{ selectedGame.name }</h2>
-                    <ul className="list-disc pl-5">
-                        { questions.map((question, index) => (
-                            <li key={ index } className="mb-2">{ question.statement }</li>
-                        )) }
-                    </ul>
-                </div>
-            ) }
-        </div>
+        <button onClick={ handleClick } className="py-4 px-12 text-nowrap rounded-md bg-blue-300">
+            Let Students Join
+        </button>
     );
 };
 
-export default StudentWaitingRoom;
+StartWaitingButton.propTypes = {
+    topicId: PropTypes.string,
+};
+
+export default StartWaitingButton;

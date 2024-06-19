@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { TextField, Button, Typography, Container, Box, Alert } from '@mui/material';
-import { AuthContext } from '../../services/authContext';
+import { AuthContext } from '../../context/authContext';
 import { useNavigate } from 'react-router-dom';
 
 const validationSchema = Yup.object({

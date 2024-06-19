@@ -29,4 +29,19 @@ socket.on('questions', (questions) => {
     // Maneja las preguntas recibidas
 });
 
+export function startGame(topicId) {
+    socket.emit('startGame', topicId);
+}
+
+socket.on('gameStarted', ({ gameCode }) => {
+    console.log("Game started with code received from server:", gameCode);
+    navigate('/student/waitingroom', { state: { gameCode } });
+});
+
+
+socket.on('studentsInRoom', (students) => {
+    console.log('Students in room:', students);
+    // Maneja la lista de estudiantes en la sala de espera
+});
+
 export default socket;

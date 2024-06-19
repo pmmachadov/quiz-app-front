@@ -1,5 +1,5 @@
 import React, { createContext, useState, useEffect } from 'react';
-import { login as loginService, logout as logoutService } from '../services/authService';
+import { loginTeacher as loginService, logoutTeacher as logoutService } from '../services/authService';
 import PropTypes from 'prop-types';
 
 export const AuthContext = createContext();
@@ -22,7 +22,7 @@ export const AuthProvider = ({ children }) => {
     }
   }, []);
 
-  export const login = async (email, password) => {
+  const login = async (email, password) => {
     try {
       const response = await loginService(email, password);
       localStorage.setItem('user', JSON.stringify({
@@ -62,5 +62,5 @@ export const AuthProvider = ({ children }) => {
 };
 
 AuthProvider.propTypes = {
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
 };

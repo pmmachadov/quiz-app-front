@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
-import { AuthContext } from '../services/authContext';
+import { AuthContext } from '../context/authContext';
 
 const PublicRoute = () => {
   const { authState } = useContext(AuthContext);
