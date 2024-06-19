@@ -29,6 +29,10 @@ socket.on('questions', (questions) => {
     // Maneja las preguntas recibidas
 });
 
+
+
+// Ahora tengo estos tambien
+
 export function startGame(topicId) {
     socket.emit('startGame', topicId);
 }

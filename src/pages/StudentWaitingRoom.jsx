@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import socket from '../socket';
 import PropTypes from 'prop-types';
+import InputCode from '../components/InputCode/InputCode';
 
 const StartWaitingButton = ({ topicId }) => {
     const navigate = useNavigate();
@@ -21,9 +22,9 @@ const StartWaitingButton = ({ topicId }) => {
     };
 
     return (
-        <button onClick={ handleClick } className="py-4 px-12 text-nowrap rounded-md bg-blue-300">
-            Let Students Join
-        </button>
+
+        <InputCode handleClick={ handleClick } />
+
     );
 };
 
