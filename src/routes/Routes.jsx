@@ -14,7 +14,7 @@ import Layout from '../components/Layout/Layout';
 import Questions from '../pages/Questions';
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
-import WaitingRoom from '../pages/WaitingRoom';
+import WaitingRoom from '../pages/WaitingRoomPage';
 import StudentRegisterOrLoginPage from '../pages/StudentRegisterOrLoginPage';
 import StudentWaitingRoom from '../pages/StudentWaitingRoom';
 

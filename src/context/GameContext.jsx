@@ -1,5 +1,6 @@
 import React, { createContext, useState, useEffect } from 'react';
 import socket from '../socket';
+import PropTypes from 'prop-types';
 
 export const GameContext = createContext();
 
@@ -39,4 +40,10 @@ export const GameProvider = ({ children }) => {
             { children }
         </GameContext.Provider>
     );
+};
+
+export default GameProvider;
+
+GameProvider.propTypes = {
+    children: PropTypes.node
 };

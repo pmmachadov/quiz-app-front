@@ -1,24 +1,32 @@
-import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import socket from '../../socket';
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 
 const StartWaitingButton = ({ topicId }) => {
+
+  const [code, setCode] = useState('');
   const navigate = useNavigate();
 
-  const handleClick = () => {
-    console.log("Button clicked, emitting startGame event with topicId:", topicId);
-    socket.emit('startGame', topicId);
-
-    socket.on('gameStarted', ({ gameCode }) => {
-      console.log("Game started with code received from server:", gameCode);
-      navigate('/student/waitingroom', { state: { gameCode } });
-    });
-
-    socket.on('error', (errorMessage) => {
-      console.error(errorMessage);
-    });
+  const generateCode = () => {
+    return Math.floor(100000 + Math.random() * 900000).toString();
   };
+
+  const handleClick = () => {
+    const gameCode = generateCode();
+    setCode(gameCode);
+    socket.emit('startGame', topicId);
+    navigate('/waitingroom', { state: { gameCode } });
+  };
+
+  socket.on('gameStarted', ({ gameCode }) => {
+    console.log("Game started with code received from server:", gameCode);
+    navigate('/waitingroom', { state: { gameCode } });
+  });
+
+  socket.on('error', (errorMessage) => {
+    console.error(errorMessage);
+  });
 
   return (
     <button onClick={ handleClick } className="py-4 px-12 text-nowrap rounded-md bg-blue-300">
@@ -30,7 +38,9 @@ const StartWaitingButton = ({ topicId }) => {
 
 export default StartWaitingButton;
 
-
 StartWaitingButton.propTypes = {
-  topicId: PropTypes.string,
+  topicId: PropTypes.string
 };
+
+
+
