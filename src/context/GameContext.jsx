@@ -11,9 +11,11 @@ export const GameProvider = ({ children }) => {
 
     useEffect(() => {
         socket.on('topics', (data) => {
+            console.log('Received topics:', data); // Agregar esta línea para depuración
             setGames(data);
         });
 
+        console.log('Emitting getTopics'); // Agregar esta línea para depuración
         socket.emit('getTopics');
 
         return () => {
@@ -23,9 +25,11 @@ export const GameProvider = ({ children }) => {
 
     useEffect(() => {
         if (selectedGame) {
+            console.log('Emitting getQuestionsByTopic for game:', selectedGame.id); // Agregar esta línea para depuración
             socket.emit('getQuestionsByTopic', selectedGame.id);
 
             socket.on('questions', (data) => {
+                console.log('Received questions:', data); // Agregar esta línea para depuración
                 setQuestions(data);
             });
 
@@ -42,8 +46,8 @@ export const GameProvider = ({ children }) => {
     );
 };
 
-export default GameProvider;
-
 GameProvider.propTypes = {
     children: PropTypes.node
 };
+
+export default GameProvider;

@@ -18,7 +18,7 @@ const getIcon = (name) => {
 };
 
 const GameList = () => {
-    const { games, setSelectedGame } = useContext(GameContext);
+    const { games, setSelectedGame, getQuestionsByTopic } = useContext(GameContext);
 
     if (games.length === 0) {
         return <div className="text-center text-xl">No games available</div>;

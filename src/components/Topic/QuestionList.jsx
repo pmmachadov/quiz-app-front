@@ -22,9 +22,6 @@ const getIcon = (name) => {
 const QuestionList = () => {
     const { questions, selectedGame } = useContext(GameContext);
 
-    console.log('Selected game:', selectedGame);
-    console.log('Questions:', questions);
-
     if (!selectedGame) return <div className="text-center text-xl">Please select a game first</div>;
 
     return (
