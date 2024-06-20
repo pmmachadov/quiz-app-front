@@ -43,6 +43,7 @@ const GameList = () => {
                             } }
                             onClick={ () => {
                                 setSelectedGame(game);
+                                getQuestionsByTopic(game.id);
                             } }
                         >
                             <div className="absolute inset-0 flex flex-col items-center justify-center p-4">
