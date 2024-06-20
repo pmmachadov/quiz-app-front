@@ -1,0 +1,271 @@
+[33mcommit fc61f7b08f97497b4f34d531ca0ac1648322710d[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mstudentLogin[m[33m, [m[1;31morigin/studentLogin[m[33m)[m
+Author: pmmachadov <pmmachadov@gmail.com>
+Date:   Wed Jun 19 21:32:59 2024 +0200
+
+    Now I need a waiting room for students
+
+[33mcommit 070bfaf4f1feae3eac86281be2b2f7018d37bfb5[m
+Author: pmmachadov <pmmachadov@gmail.com>
+Date:   Wed Jun 19 18:08:14 2024 +0200
+
+    Let Students Join button not working yet
+
+[33mcommit 1c2e31f6000176cd952802311dbf82f8e740fa1e[m
+Author: pmmachadov <pmmachadov@gmail.com>
+Date:   Tue Jun 18 23:03:46 2024 +0200
+
+    chore: Update dependencies and configure socket.io client
+
+[33mcommit dc2062f174ea7ba6c9179268a1a223c4fd11d1e1[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m, [m[1;32mdevelop[m[33m)[m
+Merge: 9db6965 bd79966
+Author: Pablo Machado <100440808+pmmachadov@users.noreply.github.com>
+Date:   Tue Jun 18 19:13:51 2024 +0200
+
+    Merge pull request #14 from pmmachadov/webSocket_front
+    
+    WebSocket added
+
+[33mcommit bd79966e2b0cd633f7a5897b59c681189a83298d[m[33m ([m[1;31morigin/webSocket_front[m[33m, [m[1;32mwebSocket_front[m[33m)[m
+Author: pmmachadov <pmmachadov@gmail.com>
+Date:   Tue Jun 18 19:01:36 2024 +0200
+
+    WebSocket added
+
+[33mcommit 9db696595ea04266acf5269e316946177b313ca0[m
+Merge: e5906dd 7e4a37b
+Author: Pablo Machado <100440808+pmmachadov@users.noreply.github.com>
+Date:   Mon Jun 17 21:41:09 2024 +0200
+
+    Merge pull request #13 from pmmachadov/webSockets.io
+    
+    Separation into model view controller pattern. Controllers folder del…
+
+[33mcommit 7e4a37bcf1937222ddde69bba98bd3c0bb369230[m
+Author: pmmachadov <pmmachadov@gmail.com>
+Date:   Mon Jun 17 21:27:37 2024 +0200
+
+    Separation into model view controller pattern. Controllers folder deleted since it's not a modern approach to use it
+
+[33mcommit e5906dd914974d16ed08bc9e55acd55e62a62c72[m
+Merge: 80ba772 b856ad8
+Author: Pablo Machado <100440808+pmmachadov@users.noreply.github.com>
+Date:   Sun Jun 16 19:52:21 2024 +0200
+
+    Merge pull request #11 from pmmachadov/key
+    
+    Unique key fixed
+
+[33mcommit b856ad898bdb1d9bf7807d6bf0b4ba447f9395c0[m[33m ([m[1;31morigin/key[m[33m)[m
+Author: pmmachadov <pmmachadov@gmail.com>
+Date:   Sun Jun 16 19:51:46 2024 +0200
+
+    Unique key fixed
+
+[33mcommit 80ba772f2e71ee6197688aba3236ec8f9b815c7e[m
+Author: pmmachadov <pmmachadov@gmail.com>
+Date:   Sun Jun 16 19:17:57 2024 +0200
+
+    Hooks loop error fixed
+
+[33mcommit e9047ac856deada7eb9307e3d70fae0a941cf986[m
+Author: 3liezerDev <3dgar3liezer@gmail.com>
+Date:   Sat Jun 15 23:46:19 2024 +0200
+
+    solving a bug
+
+[33mcommit 2ae67383505bd8ba6bfdaf2a68ba39eb04fbb4f0[m
+Author: 3liezerDev <3dgar3liezer@gmail.com>
+Date:   Sat Jun 15 23:43:52 2024 +0200
+
+    solving bug
+
+[33mcommit 8de7f0885301a363f0ad57d3168ed6f66327c4db[m
+Author: 3liezerDev <3dgar3liezer@gmail.com>
+Date:   Sat Jun 15 22:21:46 2024 +0200
+
+    waitingRoom
+
+[33mcommit c0fbdb85eec03b962c98ff7ffe91de2d52f1822e[m
+Author: 3liezerDev <3dgar3liezer@gmail.com>
+Date:   Tue Jun 4 23:18:52 2024 +0200
+
+    private page waitingarea and functional button to generate unique code
+
+[33mcommit 12a708485f346d86c25a751dd96d2c93b80c50a3[m
+Author: 3liezerDev <3dgar3liezer@gmail.com>
+Date:   Sat Jun 1 02:56:04 2024 +0200
+
+    complete user registration and login, create private page structure for the logged in user and use localstorage to save the session
+
+[33mcommit c03e3baf82c8082e93210dbee83866d50a35814e[m
+Author: 3liezerDev <3dgar3liezer@gmail.com>
+Date:   Fri May 31 00:31:04 2024 +0200
+
+    starting login page and functionalities
+
+[33mcommit 27ead4a848a5cc74cb1afe266fa687ed8af533f8[m
+Author: Pablo Machado <100440808+pmmachadov@users.noreply.github.com>
+Date:   Thu May 30 21:18:24 2024 +0200
+
+    Added to dynamic routes
+
+[33mcommit ba7cdb9773f43e704e9a7b0333d5736dcdf46fd2[m
+Author: Pablo Machado <100440808+pmmachadov@users.noreply.github.com>
+Date:   Thu May 30 19:28:05 2024 +0200
+
+    Cards formatting to make them smaller
+
+[33mcommit 9c0f2344814ff58a0496f6c548f0a1b694f8abbb[m
+Author: Pablo Machado <100440808+pmmachadov@users.noreply.github.com>
+Date:   Thu May 30 19:17:42 2024 +0200
+
+    Deleting aunnecessary files
+
+[33mcommit 5f643d6144e0b31b639faacc72733b50a76f75db[m
+Author: Pablo Machado <100440808+pmmachadov@users.noreply.github.com>
+Date:   Wed May 29 21:17:12 2024 +0200
+
+    chore: Add @tailwindcss/aspect-ratio plugin and update colors in tailwind.config.js
+
+[33mcommit 906857249cbe8192c6e20d1c5e144cc8a0a9052f[m
+Author: Pablo Machado <100440808+pmmachadov@users.noreply.github.com>
+Date:   Wed May 29 18:39:53 2024 +0200
+
+    Questions are seen by topic
+
+[33mcommit 59562a8950abf8e6371c24abc53d87839814cdae[m
+Author: Pablo Machado <100440808+pmmachadov@users.noreply.github.com>
+Date:   Wed May 29 00:50:52 2024 +0200
+
+    No topics available
+
+[33mcommit 7b60161213d44219a8b55c834c6047248e7a6bfe[m
+Author: 3liezerDev <3dgar3liezer@gmail.com>
+Date:   Sun May 26 14:39:09 2024 +0200
+
+    delete disable component
+
+[33mcommit 961eb13b58ead06c96025eb55cdb698e62f9aabe[m
+Author: 3liezerDev <3dgar3liezer@gmail.com>
+Date:   Sun May 26 12:49:53 2024 +0200
+
+    Registration completed, mailc confirmation working good
+
+[33mcommit f69a6624394fc2f8ca41d0f5734120771714e1a3[m
+Author: 3liezerDev <3dgar3liezer@gmail.com>
+Date:   Sat May 25 10:53:56 2024 +0200
+
+    solving routes
+
+[33mcommit 0845e8596eb7e226924fb7d17e6f17223b3cab3c[m
+Merge: ca43142 d2585d4
+Author: 3liezerDev <3dgar3liezer@gmail.com>
+Date:   Sat May 25 10:46:10 2024 +0200
+
+    create the new route in routes teacher dashboard in corresponding routes
+
+[33mcommit ca431428823ab5d49f51f26266272572a999d999[m
+Author: 3liezerDev <3dgar3liezer@gmail.com>
+Date:   Sat May 25 10:36:50 2024 +0200
+
+    Score page and 3d componentes
+
+[33mcommit d2585d490e79434258fd6ea2b7c100a382d211cd[m
+Merge: de6a04b 3b2e6d5
+Author: Pablo Machado <100440808+pmmachadov@users.noreply.github.com>
+Date:   Fri May 24 22:24:13 2024 +0200
+
+    Merge pull request #4 from Quiz-app-Migracode/6.1-Questions-and-Answers-list
+    
+    Add TeacherDashboard component and update routing in App.jsx. Questio…
+
+[33mcommit 3b2e6d55c3fea873e0b3c33e4a99ff1d28aeaf0f[m
+Author: Pablo Machado <100440808+pmmachadov@users.noreply.github.com>
+Date:   Fri May 24 22:07:45 2024 +0200
+
+    Add TeacherDashboard component and update routing in App.jsx. Questions by topic added
+
+[33mcommit 85e05a4b81cb61b8a15ab140c306f07d38030c21[m
+Author: 3liezerDev <3dgar3liezer@gmail.com>
+Date:   Fri May 24 01:39:08 2024 +0200
+
+    Refactor home component code and create routing of pages
+
+[33mcommit 46c3f0910ccb5a40de1ed50d2a41656e8d78c5f0[m
+Author: 3liezerDev <3dgar3liezer@gmail.com>
+Date:   Thu May 23 23:52:17 2024 +0200
+
+    three js installation and Home components
+
+[33mcommit de6a04b76742c847b1c81d1a1b4a77dcf2eb8113[m
+Merge: 0adcb9b 5a583d3
+Author: Pablo Machado <100440808+pmmachadov@users.noreply.github.com>
+Date:   Thu May 23 12:26:18 2024 +0200
+
+    Merge branch 'develop' of https://github.com/Quiz-app-Migracode/quiz-app-front into develop
+
+[33mcommit 5a583d3ce146d95b2f9670245cf538c5db93cfe7[m
+Author: 3liezerDev <3dgar3liezer@gmail.com>
+Date:   Wed May 22 22:30:33 2024 +0200
+
+    Navbar and footer
+
+[33mcommit 17e66e083cefaafc8c8dc7b78941fdec307b1deb[m
+Author: 3liezerDev <3dgar3liezer@gmail.com>
+Date:   Tue May 21 23:54:19 2024 +0200
+
+    Navbar component created
+
+[33mcommit 24e5cd3c0701a03d268cea66babfb0e312371e53[m
+Author: 3liezerDev <3dgar3liezer@gmail.com>
+Date:   Tue May 21 22:32:23 2024 +0200
+
+    Button component
+
+[33mcommit 89bbc4e4196b73213a4265478a90278cab9ccfe6[m
+Author: 3liezerDev <3dgar3liezer@gmail.com>
+Date:   Sat May 18 12:38:21 2024 +0200
+
+    tailwind-installation
+
+[33mcommit 0adcb9b330871c74edad9999bd5085931688886d[m
+Merge: 4981d17 2e8694b
+Author: Pablo Machado <100440808+pmmachadov@users.noreply.github.com>
+Date:   Sat May 18 12:14:55 2024 +0200
+
+    Merge pull request #2 from Quiz-app-Migracode/develop
+    
+    edgar feature
+
+[33mcommit 2e8694b429b639823eca17046916687d2f703f2b[m
+Merge: 09023c5 9b1441e
+Author: Pablo Machado <100440808+pmmachadov@users.noreply.github.com>
+Date:   Sat May 18 12:13:41 2024 +0200
+
+    Merge pull request #1 from Quiz-app-Migracode/alex_tryout
+    
+    feat: add check on README
+
+[33mcommit 09023c5f2544f95797f516331042860c0600cef2[m
+Author: Shaminderjeet kaur <shaminderjeet92@gmail.com>
+Date:   Sat May 18 12:12:10 2024 +0200
+
+    h1 done
+
+[33mcommit 7ca6976fe93b8045d47ea8374f0050109456f002[m
+Author: 3liezerDev <3dgar3liezer@gmail.com>
+Date:   Sat May 18 12:06:03 2024 +0200
+
+    edgar feature
+
+[33mcommit 9b1441e34a5246a3ff6327d226cb50315c5d5df1[m
+Author: sggyflt <sgflt88@gmail.com>
+Date:   Sat May 18 12:03:03 2024 +0200
+
+    feat: add check on README
+
+[33mcommit 4981d17ebc5cef3d797a22bf9a3c9a16f3839cf0[m
+Author: Pablo Machado <100440808+pmmachadov@users.noreply.github.com>
+Date:   Thu May 16 12:43:01 2024 +0200
+
+    Project basis
