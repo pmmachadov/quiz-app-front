@@ -1,10 +1,12 @@
-import WaitingRoomPage from "./WaitingRoomPage";
+import React from 'react';
+import StudentRegisterOrLoginPage from '../components/StudentRegisterOrLogin/StudentRegisterOrLogin';
 
 
 const StudentRegisterOrLogin = () => (
     <div>
-        <WaitingRoomPage />
+        <StudentRegisterOrLogin />
     </div>
+
 );
 
-export default StudentRegisterOrLogin;
+export default StudentRegisterOrLoginPage;
