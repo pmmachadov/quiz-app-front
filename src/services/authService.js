@@ -18,11 +18,16 @@ export const registerOrLoginStudent = async (code, username) => {
 };
 
 export const loginTeacher = async (email, password) => {
-  const response = await axios.post(`${API_URL}/login`, { email, password });
-  if (response.data.token) {
-    localStorage.setItem('user', JSON.stringify(response.data));
+  try {
+    const response = await axios.post(`${API_URL}/login`, { email, password });
+    if (response.data.token) {
+      localStorage.setItem('user', JSON.stringify(response.data));
+    }
+    return response.data;
+  } catch (error) {
+    console.error('Login error:', error.response ? error.response.data : error.message);
+    throw error;
   }
-  return response.data;
 };
 
 export const logoutStudent = () => {
