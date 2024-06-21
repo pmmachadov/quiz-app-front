@@ -14,7 +14,7 @@ import Layout from '../components/Layout/Layout';
 import Questions from '../pages/Questions';
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
-import WaitingRoom from '../pages/WaitingRoomPage';
+import TeacherWaitingRoom from '../pages/TeacherWaitingRoomPage';
 import StudentRegisterOrLoginPage from '../pages/StudentRegisterOrLoginPage';
 import StudentWaitingRoom from '../pages/StudentWaitingRoom';
 
@@ -38,12 +38,12 @@ function RoutesWeb() {
         <Route path="" element={ <Layout><LoginPage /></Layout> } />
       </Route>
 
-      <Route path="/student/register-or-login" element={ <Layout><StudentRegisterOrLoginPage /></Layout> } />
-      <Route path="/student/waitingroom" element={ <Layout><StudentWaitingRoom /></Layout> } />
+      <Route path="/student/studentRegisterOrLogin" element={ <Layout><StudentRegisterOrLoginPage /></Layout> } />
+      <Route path="/student/studentwaitingroom" element={ <Layout><StudentWaitingRoom /></Layout> } />
 
       <Route element={ <PrivateRoute /> }>
         <Route path="/questions" element={ <Layout><Questions /></Layout> } />
-        <Route path="/waitingroom" element={ <Layout><WaitingRoom /></Layout> } />
+        <Route path="/teacherwaitingroom" element={ <Layout><TeacherWaitingRoom /></Layout> } />
       </Route>
     </Routes>
   );

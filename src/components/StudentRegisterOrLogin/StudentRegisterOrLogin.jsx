@@ -9,8 +9,8 @@ const StudentRegisterOrLogin = () => {
 
     const joinGame = async () => {
         try {
-            const response = await axios.post(`${import.meta.env.VITE_API_URL}/student/login`, {
-                gameCode,
+            const response = await axios.post(`${import.meta.env.VITE_API_URL}/student/studentRegisterOrLogin`, {
+                code: gameCode,
                 username
             }, {
                 headers: {
@@ -19,7 +19,7 @@ const StudentRegisterOrLogin = () => {
             });
             const { game, student } = response.data;
             console.log('Joined game:', game, 'Student:', student);
-            navigate('/student/waitingroom', { state: { gameCode } });
+            navigate('/studentWaitingRoom', { state: { gameCode } });
         } catch (error) {
             console.error('Error joining game:', error);
         }

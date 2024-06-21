@@ -34,7 +34,7 @@ export function startGame(topicId) {
 
 socket.on('gameStarted', ({ gameCode }) => {
     console.log("Game started with code received from server:", gameCode);
-    navigate('/student/waitingroom', { state: { gameCode } });
+    navigate('/student/studentwaitingroom', { state: { gameCode } });
 });
 
 socket.on('studentsInRoom', (students) => {

@@ -1,5 +1,5 @@
 import React, { createContext, useState, useEffect } from 'react';
-import { registerOrLoginStudent as loginService, logoutStudent as logoutService } from '../services/authService';
+import { studentRegisterOrLogin as loginService, logoutStudent as logoutService } from '../services/authService';
 import PropTypes from 'prop-types';
 
 export const StudentAuthContext = createContext();
