@@ -1,28 +1,28 @@
+// src/components/StudentRegisterOrLogin/StudentRegisterOrLogin.jsx (Frontend)
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import { useSocket } from '../../context/SocketContext'; // Asegúrate de que la ruta sea correcta
 
 const StudentRegisterOrLogin = () => {
     const [gameCode, setGameCode] = useState('');
     const [username, setUsername] = useState('');
     const navigate = useNavigate();
+    const socket = useSocket(); // Usar el contexto del socket
 
-    const joinGame = async () => {
-        try {
-            const response = await axios.post(`${import.meta.env.VITE_API_URL}/student/studentRegisterOrLogin`, {
-                code: gameCode,
-                username
-            }, {
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            });
-            const { game, student } = response.data;
+    const joinGame = () => {
+        console.log('Emitting event studentRegisterOrLogin with:', { code: gameCode, username });
+        socket.emit('studentRegisterOrLogin', { code: gameCode, username });
+
+        socket.on('joinSuccess', (data) => {
+            const { game, student } = data;
+            console.log('Received joinSuccess event:', data);
             console.log('Joined game:', game, 'Student:', student);
             navigate('/studentWaitingRoom', { state: { gameCode } });
-        } catch (error) {
-            console.error('Error joining game:', error);
-        }
+        });
+
+        socket.on('joinError', (error) => {
+            console.error('Received joinError event:', error);
+        });
     };
 
     return (
