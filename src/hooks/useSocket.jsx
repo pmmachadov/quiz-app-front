@@ -27,10 +27,16 @@ const useSocket = () => {
             console.error('Connection error:', err);
         });
 
+        const disconnectTimeout = setTimeout(() => {
+            if (socketRef.current) {
+                console.log('Disconnecting socket after 24 hours...');
+                socketRef.current.disconnect();
+            }
+        }, 86400000); // 24 hours in milliseconds
+
         return () => {
-            // if (socketRef.current) {
-            //     socketRef.current.disconnect();
-            // }
+            // Limpiar el timeout para evitar múltiples instancias si el componente se desmonta y se vuelve a montar
+            clearTimeout(disconnectTimeout);
         };
     }, []);
 
