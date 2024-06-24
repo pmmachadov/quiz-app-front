@@ -1,13 +1,12 @@
-// src/components/StudentRegisterOrLogin/StudentRegisterOrLogin.jsx (Frontend)
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useSocket } from '../../context/SocketContext'; // Asegúrate de que la ruta sea correcta
+import { useSocket } from '../../context/SocketContext';
 
 const StudentRegisterOrLogin = () => {
     const [gameCode, setGameCode] = useState('');
     const [username, setUsername] = useState('');
     const navigate = useNavigate();
-    const socket = useSocket(); // Usar el contexto del socket
+    const socket = useSocket();
 
     const joinGame = () => {
         console.log('Emitting event studentRegisterOrLogin with:', { code: gameCode, username });
@@ -17,7 +16,7 @@ const StudentRegisterOrLogin = () => {
             const { game, student } = data;
             console.log('Received joinSuccess event:', data);
             console.log('Joined game:', game, 'Student:', student);
-            navigate('/studentWaitingRoom', { state: { gameCode } });
+            navigate('/student/studentWaitingRoom', { state: { gameCode } });
         });
 
         socket.on('joinError', (error) => {
