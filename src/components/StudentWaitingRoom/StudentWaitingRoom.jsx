@@ -8,16 +8,22 @@ const StudentWaitingRoom = () => {
     const [students, setStudents] = useState([]);
 
     useEffect(() => {
-        socket.emit('joinGame', { gameCode, username: student.username });
+        if (gameCode && student && student.username) {
+            socket.emit('joinGame', { gameCode, username: student.username });
 
-        socket.on('studentsInRoom', (students) => {
-            setStudents(students);
-        });
+            socket.on('studentsInRoom', (students) => {
+                setStudents(students);
+            });
 
-        return () => {
-            socket.off('studentsInRoom');
-        };
-    }, [gameCode, student.username]);
+            return () => {
+                socket.off('studentsInRoom');
+            };
+        }
+    }, [gameCode, student]);
+
+    if (!gameCode || !student) {
+        return <p>Invalid game code or student information.</p>;
+    }
 
     return (
         <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100">

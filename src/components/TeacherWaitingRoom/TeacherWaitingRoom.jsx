@@ -11,7 +11,13 @@ const TeacherWaitingRoom = () => {
         socket.emit('joinGame', { gameCode, username: 'Teacher' });
 
         socket.on('studentsInRoom', (students) => {
-            setStudents(students);
+            const uniqueStudents = students.reduce((unique, student) => {
+                if (!unique.some(u => u.id === student.id)) {
+                    unique.push(student);
+                }
+                return unique;
+            }, []);
+            setStudents(uniqueStudents);
         });
 
         return () => {
@@ -32,7 +38,7 @@ const TeacherWaitingRoom = () => {
                     <h3 className="font-bold mb-2">Joined Students:</h3>
                     <ul>
                         { students.map((student) => (
-                            <li key={ student.id } className="text-left">{ student.username }</li>
+                            <li key={ `${student.id}-${student.username}` } className="text-left">{ student.username }</li>
                         )) }
                     </ul>
                 </div>
