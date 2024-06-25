@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import socket from '../socket';
+import socket from '../../socket';
+import { v4 as uuidv4 } from 'uuid';
 
 const StudentWaitingRoom = () => {
     const location = useLocation();
@@ -8,19 +9,30 @@ const StudentWaitingRoom = () => {
     const [students, setStudents] = useState([]);
 
     useEffect(() => {
+        // Verificar que gameCode y student no sean nulos ni undefined
         if (gameCode && student && student.username) {
+            // Emitir el evento para unirse al juego
             socket.emit('joinGame', { gameCode, username: student.username });
 
-            socket.on('studentsInRoom', (students) => {
+            // Definir la función de manejo de eventos
+            const handleStudentsInRoom = (students) => {
                 setStudents(students);
-            });
-
-            return () => {
-                socket.off('studentsInRoom');
             };
+
+            // Limpiar cualquier evento anterior antes de registrar uno nuevo
+            socket.off('studentsInRoom');
+            socket.on('studentsInRoom', handleStudentsInRoom);
+
+            // Limpiar el evento al desmontar el componente
+            return () => {
+                socket.off('studentsInRoom', handleStudentsInRoom);
+            };
+        } else {
+            console.error('Invalid game code or student information.');
         }
     }, [gameCode, student]);
 
+    // Validación y mensajes de error
     if (!gameCode || !student) {
         return <p>Invalid game code or student information.</p>;
     }
@@ -34,7 +46,7 @@ const StudentWaitingRoom = () => {
                     <h3 className="font-bold mb-2">Joined Students:</h3>
                     <ul>
                         { students.map((student) => (
-                            <li key={ student.id } className="text-left">{ student.username }</li>
+                            <li key={ uuidv4() } className="text-left">{ student.username }</li>
                         )) }
                     </ul>
                 </div>

@@ -16,7 +16,7 @@ import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
 import TeacherWaitingRoom from '../pages/TeacherWaitingRoomPage';
 import StudentRegisterOrLoginPage from '../pages/StudentRegisterOrLoginPage';
-import StudentWaitingRoom from '../pages/StudentWaitingRoom';
+import StudentWaitingRoom from '../pages/StudentWaitingRoomPage';
 
 function RoutesWeb() {
   return (

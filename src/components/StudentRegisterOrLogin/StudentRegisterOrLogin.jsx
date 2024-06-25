@@ -16,7 +16,7 @@ const StudentRegisterOrLogin = () => {
             const { game, student } = data;
             console.log('Received joinSuccess event:', data);
             console.log('Joined game:', game, 'Student:', student);
-            navigate('/student/studentWaitingRoom', { state: { gameCode } });
+            navigate('/student/studentWaitingRoom', { state: { gameCode, student } });  // <-- Aquí se pasa también el objeto student
         });
 
         socket.on('joinError', (error) => {
