@@ -1,10 +1,9 @@
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import socket from '../../socket';
-import { useState } from 'react';
 import PropTypes from 'prop-types';
 
 const StartWaitingButton = ({ topicId }) => {
-
   const [code, setCode] = useState('');
   const navigate = useNavigate();
 
@@ -15,13 +14,13 @@ const StartWaitingButton = ({ topicId }) => {
   const handleClick = () => {
     const gameCode = generateCode();
     setCode(gameCode);
-    socket.emit('startGame', topicId);
-    navigate('/waitingroom', { state: { gameCode } });
+    socket.emit('startGame', { topicId, gameCode });
+    navigate('/teacherWaitingroom', { state: { gameCode } });
   };
 
   socket.on('gameStarted', ({ gameCode }) => {
     console.log("Game started with code received from server:", gameCode);
-    navigate('/waitingroom', { state: { gameCode } });
+    navigate('/teacherWaitingroom', { state: { gameCode } });
   });
 
   socket.on('error', (errorMessage) => {
@@ -35,12 +34,8 @@ const StartWaitingButton = ({ topicId }) => {
   );
 };
 
-
-export default StartWaitingButton;
-
 StartWaitingButton.propTypes = {
-  topicId: PropTypes.string
+  topicId: PropTypes.string.isRequired
 };
 
-
-
+export default StartWaitingButton;

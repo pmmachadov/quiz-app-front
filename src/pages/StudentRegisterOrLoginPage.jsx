@@ -1,8 +1,8 @@
 import React from 'react';
-import StudentRegisterOrLoginPage from '../components/StudentRegisterOrLogin/StudentRegisterOrLogin';
+import StudentRegisterOrLogin from '../components/StudentRegisterOrLogin/StudentRegisterOrLogin';
 
 
-const StudentRegisterOrLogin = () => (
+const StudentRegisterOrLoginPage = () => (
     <div>
         <StudentRegisterOrLogin />
     </div>

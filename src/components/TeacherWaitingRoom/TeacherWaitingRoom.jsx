@@ -1,23 +1,33 @@
-// File: src/pages/StudentWaitingRoom.jsx
-
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import socket from '../socket';
+import socket from '../../socket';
 
-const StudentWaitingRoom = () => {
+const TeacherWaitingRoom = () => {
     const location = useLocation();
     const { gameCode } = location.state || {};
     const [students, setStudents] = useState([]);
 
     useEffect(() => {
+        socket.emit('joinGame', { gameCode, username: 'Teacher' });
+
         socket.on('studentsInRoom', (students) => {
-            setStudents(students);
+            const uniqueStudents = students.reduce((unique, student) => {
+                if (!unique.some(u => u.id === student.id)) {
+                    unique.push(student);
+                }
+                return unique;
+            }, []);
+            setStudents(uniqueStudents);
         });
 
         return () => {
             socket.off('studentsInRoom');
         };
-    }, []);
+    }, [gameCode]);
+
+    const startGame = () => {
+        socket.emit('startGame', { gameCode });
+    };
 
     return (
         <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100">
@@ -28,14 +38,15 @@ const StudentWaitingRoom = () => {
                     <h3 className="font-bold mb-2">Joined Students:</h3>
                     <ul>
                         { students.map((student) => (
-                            <li key={ student.id } className="text-left">{ student.username }</li>
+                            <li key={ `${student.id}-${student.username}` } className="text-left">{ student.username }</li>
                         )) }
                     </ul>
                 </div>
-                <p className="text-gray-700">Waiting for the game to start...</p>
+                <button onClick={ startGame } className="bg-blue-500 text-white py-2 px-4 rounded">Start Game</button>
+                <p className="text-gray-700">Waiting for students to join...</p>
             </div>
         </div>
     );
 };
 
-export default StudentWaitingRoom;
+export default TeacherWaitingRoom;

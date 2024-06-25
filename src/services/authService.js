@@ -9,8 +9,8 @@ export const registerTeacher = async (firstName, lastName, email, password) => {
   return response.data;
 };
 
-export const registerOrLoginStudent = async (code, username) => {
-  const response = await axios.post(`${STUDENT_API_URL}/registerOrLogin`, { code, username });
+export const studentRegisterOrLogin = async (code, username) => {
+  const response = await axios.post(`${STUDENT_API_URL}/studentRegisterOrLogin`, { code, username });
   if (response.data.token) {
     localStorage.setItem('student', JSON.stringify(response.data));
   }
