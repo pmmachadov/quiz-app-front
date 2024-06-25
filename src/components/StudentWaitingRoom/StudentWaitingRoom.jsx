@@ -1,29 +1,27 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import socket from '../../socket';
-import { v4 as uuidv4 } from 'uuid';
 
 const StudentWaitingRoom = () => {
     const location = useLocation();
     const { gameCode, student } = location.state || {};
     const [students, setStudents] = useState([]);
 
-    useEffect(() => {
-        // Verificar que gameCode y student no sean nulos ni undefined
-        if (gameCode && student && student.username) {
-            // Emitir el evento para unirse al juego
-            socket.emit('joinGame', { gameCode, username: student.username });
+    console.log('gameCode:', gameCode);
+    console.log('student:', student);
 
-            // Definir la función de manejo de eventos
+    useEffect(() => {
+        if (gameCode && student && student.username) {
+            socket.emit('joinGame', { gameCode, username: student.username });
             const handleStudentsInRoom = (students) => {
-                setStudents(students);
+                const uniqueStudents = Array.from(new Set(students.map(s => s.username)))
+                    .map(username => students.find(s => s.username === username));
+                setStudents(uniqueStudents);
             };
 
-            // Limpiar cualquier evento anterior antes de registrar uno nuevo
             socket.off('studentsInRoom');
             socket.on('studentsInRoom', handleStudentsInRoom);
 
-            // Limpiar el evento al desmontar el componente
             return () => {
                 socket.off('studentsInRoom', handleStudentsInRoom);
             };
@@ -32,7 +30,6 @@ const StudentWaitingRoom = () => {
         }
     }, [gameCode, student]);
 
-    // Validación y mensajes de error
     if (!gameCode || !student) {
         return <p>Invalid game code or student information.</p>;
     }
@@ -46,7 +43,7 @@ const StudentWaitingRoom = () => {
                     <h3 className="font-bold mb-2">Joined Students:</h3>
                     <ul>
                         { students.map((student) => (
-                            <li key={ uuidv4() } className="text-left">{ student.username }</li>
+                            <li key={ student.username } className="text-left">{ student.username }</li>
                         )) }
                     </ul>
                 </div>
